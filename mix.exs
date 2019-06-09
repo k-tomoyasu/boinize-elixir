@@ -9,7 +9,8 @@ defmodule Boinize.MixProject do
       description: "Japanese vowel(`boin`) converter using `Cabocha`",
       package: [
         maintainers: ["k-tomoyasu"],
-        licenses: ["MIT"]
+        licenses: ["MIT"],
+        links: %{"GitHub" => "https://github.com/k-tomoyasu/boinize-elixir"}
       ],
       start_permanent: Mix.env() == :prod,
       deps: deps()

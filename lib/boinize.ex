@@ -56,6 +56,60 @@ defmodule Boinize do
       }
     }
   ]
+
+
+  iex> Boinize.parse_clause("今日は晴れ")
+  [
+    %{
+      "boin" => "イョウア",
+      "origin" => [
+        %{
+          "base" => "今日",
+          "conjugation" => "",
+          "conjugation_form" => "",
+          "id" => 0,
+          "pos" => "名詞",
+          "pos1" => "副詞可能",
+          "pos2" => "",
+          "pos3" => "",
+          "pronunciation" => "キョー",
+          "surface" => "今日",
+          "yomi" => "キョウ"
+        },
+        %{
+          "base" => "は",
+          "conjugation" => "",
+          "conjugation_form" => "",
+          "id" => 1,
+          "pos" => "助詞",
+          "pos1" => "係助詞",
+          "pos2" => "",
+          "pos3" => "",
+          "pronunciation" => "ワ",
+          "surface" => "は",
+          "yomi" => "ハ"
+        }
+      ]
+    },
+    %{
+      "boin" => "アエ",
+      "origin" => [
+        %{
+          "base" => "晴れ",
+          "conjugation" => "",
+          "conjugation_form" => "",
+          "id" => 2,
+          "pos" => "名詞",
+          "pos1" => "一般",
+          "pos2" => "",
+          "pos3" => "",
+          "pronunciation" => "ハレ",
+          "surface" => "晴れ",
+          "yomi" => "ハレ"
+        }
+      ]
+    }
+  ]
   """
 
   def parse text do
