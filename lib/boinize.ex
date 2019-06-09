@@ -1,10 +1,10 @@
 defmodule Boinize do
   @moduledoc """
-  Documentation for Boinize.
+  Japanese vowel(`boin`) converter using `Cabocha`.
   """
 
   @doc """
-  ## Examples
+  ## Examples parse/1 split by morpheme
   iex> Boinize.parse("明日は晴れ")
   [
     %{
@@ -56,8 +56,24 @@ defmodule Boinize do
       }
     }
   ]
+  """
 
+  def parse text do
+    CaboCha.parse(text)
+    |> List.first
+    |> Enum.map(fn elm ->
+        elm["morphs"]
+        |> Enum.map(fn morph ->
+          morph["yomi"]
+          |> to_boin
+          |> map_origin(morph)
+          end)
+        end)
+    |> List.flatten
+  end
 
+  @doc """
+  ## Examples parse_clause/1 split by clause
   iex> Boinize.parse_clause("今日は晴れ")
   [
     %{
@@ -111,20 +127,6 @@ defmodule Boinize do
     }
   ]
   """
-
-  def parse text do
-    CaboCha.parse(text)
-    |> List.first
-    |> Enum.map(fn elm ->
-        elm["morphs"]
-        |> Enum.map(fn morph ->
-          morph["yomi"]
-          |> to_boin
-          |> map_origin(morph)
-          end)
-        end)
-    |> List.flatten
-  end
 
   def parse_clause text do
     CaboCha.parse(text)
